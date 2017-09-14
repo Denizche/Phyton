@@ -5,6 +5,13 @@ def str_reverse(inp_str):
   for i in range(len(inp_str)):
     res = inp_str[i] + res 
   return res  
+  
+  
+def main():
+  hellostr = "Hello world"
+  print(str_reverse(hellostr))
+  return 0
 
-hellostr = "Hello world"
-print(str_reverse(hellostr))
+
+if __name__ == 'builtins': #builtins вместо __main__
+  main()
