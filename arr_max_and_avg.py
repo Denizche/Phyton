@@ -1,4 +1,5 @@
 #arr max and average
+#denis chechelev RT5-51
 def arr_min(array):
   minim = array[0]
   for i in range(1, len(array)):
