@@ -4,8 +4,8 @@ def arr_min(array):
   if len(array) == 0:
       return -1
   minim = array[0]
-  for i in range(len(array)):
-    current = array[i]
+  for x in array:
+    current = x
     if current < minim:
       minim = current
   return minim
@@ -15,8 +15,8 @@ def arr_avg(array):
   if len(array) == 0:
       return -1
   summ = 0
-  for i in range(len(array)):
-    summ += array[i]
+  for x in array:
+    summ += x
   return summ / len(array)
   
   
@@ -34,6 +34,7 @@ def main():
   print('Среднее значение: ')
   print(arr_avg(array2))
   return 0
+
 
 print (__name__)
 if __name__ == 'builtins': #builtins вместо __main__
