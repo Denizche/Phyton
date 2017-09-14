@@ -4,7 +4,7 @@ def arr_min(array):
   if len(array) == 0:
       return -1
   minim = array[0]
-  for i in range(1, len(array)):
+  for i in range(len(array)):
     current = array[i]
     if current < minim:
       minim = current
