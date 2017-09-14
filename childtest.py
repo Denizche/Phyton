@@ -2,18 +2,17 @@
 #denis chechelev RT5-51
   
   
-def agecheck(inp_data):
-  check = False
+def check_age(inp_data):
   for i in inp_data:
     if i['age'] > 18:
-      check = True
-  return check    
+      return True
+  return False    
 
 
-def print_wrkrs_w_kids(workers):
-  for i in workers:
-      if agecheck(i.get('children', [])):
-         print(i['name'])
+def print_workers_with_kids(workers):
+  for x in workers:
+      if check_age(x.get('children', [])):
+         print(x['name'])
         
          
 def main():
@@ -22,7 +21,7 @@ def main():
   "age" : 34 ,
   "children" : [{
   "name" : "Вася" ,
-  "age" : 32 ,
+  "age" : 20 ,
   }, {
   "name" : "Петя" ,
   "age" : 10 ,
@@ -40,7 +39,7 @@ def main():
   }],
   }
   workers = [ ivan , dasha]
-  print_wrkrs_w_kids(workers)
+  print_workers_with_kids(workers)
   return 0
   
 
