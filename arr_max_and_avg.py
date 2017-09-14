@@ -8,7 +8,6 @@ def arr_min(array):
     current = array[i]
     if current < minim:
       minim = current
-    
   return minim
 
 
