@@ -3,7 +3,7 @@
 def str_reverse(inp_str):
   res = ""
   for i in range(len(inp_str)):
-    res += inp_str[i]
+    res = inp_str[i] + res
   return res  
   
   
