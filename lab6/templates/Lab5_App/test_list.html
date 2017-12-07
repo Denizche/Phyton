@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Студенты{% endblock %}
+
+{% block header %}<h2 class="text-left">Список студентов делавших эту лабу:</h2>{% endblock %}
+
+{% block body %}
+    {% for test in tests %}
+        <h4>{{ test.first_name }}</h4>
+        <p>{{ test.last_name }}</p>
+        <hr>
+    {% endfor %}
+{% endblock %}
