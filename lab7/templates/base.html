@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap-theme.css' %}">
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'main' %}">Lab 5</a>
+            </div>
+        </div>
+        <ul class="nav-tabs">
+           {% if request.user.username %}
+               <li><a style="color: rgba(255,254,246,0.52)" href="/auth/logout/">Выход ({{ request.user.username }})</a></li>
+           {% else %}
+               <li><a style="color: rgba(255,254,246,0.52)" href="/auth/login">Войти</a></li>
+           {% endif %}
+        </ul>
+    </div>
+    <div class="container">
+        <header>{% block header %}{% endblock %}</header>
+        <div>
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <div class="footer">
+            <p>&copy Чечелев Денис Сергеевич РТ5-51 2017</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
