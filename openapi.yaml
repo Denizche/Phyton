@@ -1,0 +1,798 @@
+openapi: 3.0.1
+
+info:
+  contact:
+    email: dryakin@pt-t.ru
+  description: Forward Billing API
+  title: CSS Mobile API
+  version: 0.6.7
+
+servers:
+  - url: https://localhost/v2
+  - url: http://localhost/v2
+
+paths:
+
+  /tariff:
+    patch:
+      summary: Смена тарифа ККМ-услуги
+      security:
+        - auth: [ ]
+      operationId: patchChangeTariffReq
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeTariffReqObject'
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChangeTariffRespObject"
+      tags:
+        - tariff
+        - machine
+  /report:
+    post:
+      summary: Запрос оборотной ведомости
+      security:
+        - auth: [ ]
+      operationId: postGetReportReq
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetReportReqObject'
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetReportRespObject"
+      tags:
+        - report
+        
+  /machine/activate:
+    put:
+      summary: Запрос на активацию ККМ-услуги
+      security:
+          - auth: [ ]
+      operationId: putActivateReq
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActivateReqObject'
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ActivateRespObject"
+      tags:
+        - machine
+        
+    post:
+      summary: Создание ККМ-услуги
+      security:
+        - auth: [ ]
+      operationId: postCreateMachineReq
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMachineReqObject'
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateMachineRespObject"
+      tags:
+        - machine 
+        
+  /machine:
+
+    patch:
+      summary: Смена договора ККМ-услуги
+      security:
+        - auth: [ ]
+      operationId: patchChangeAccountMachineReq
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeAccountMachineReqObject'
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChangeAccountMachineRespObject"
+      tags:
+        - machine
+    put:
+      summary: Закрытие ККМ-услуги
+      security:
+        - auth: [ ]
+      operationId: putCloseMachineReq
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CloseMachineReqObject'
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CloseMachineRespObject"
+      tags:
+        - machine
+        
+    post:
+      summary: Запрос списка ККМ-услуг по лицевому счету
+      security:
+        - auth: [ ]
+      operationId: postGetMachineReq
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetMachineReqObject'
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetMachineRespObject"
+      tags:
+        - machine
+
+  /balance:
+    post:
+      summary: Запрос текущего баланса
+      security:
+        - auth: [ ]
+      operationId: postGetBalanceReq
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetBalanceReqObject'
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetBalanceRespObject"
+      tags:
+        - balance
+        
+  /abonent/search: 
+    post:
+      summary: Поиск абонента
+      security:
+        - auth: [ ]
+      operationId: postGetAbonentReq
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetAbonentReqObject'
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetAbonentRespObject"
+      tags:
+        - abonent
+        
+  /abonent:
+    post:
+      summary: Создание абонента
+      security:
+        - auth: [ ]
+      operationId: postCreateAbonentReq
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAbonentReqObject'
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateAbonentRespObject"
+      tags:
+        - abonent
+    patch:
+      summary: Изменение реквизитов клиента
+      security:
+        - auth: [ ]
+      operationId: patchEditAbonentReq
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditAbonentReqObject'
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EditAbonentRespObject"
+      tags:
+        - abonent
+    put:
+      summary: Закрытие лицевого счета
+      security:
+        - auth: [ ]
+      operationId: deleteCloseAbonentReq
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CloseAbonentReqObject'
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CloseAbonentRespObject"
+      tags:
+        - abonent
+
+components:
+  responses:
+    4XX:
+      description: Ошибка
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorMessage"
+
+  schemas:
+
+    ChangeTariffRespObject:
+      type: object
+      required:
+        - resultType
+        - requestId
+      properties:
+        resultType:
+          type: string
+          description: Код ответа
+          example: "RESULT_OK,
+          RESULT_INCORRECT_INPUT_DATA,
+          RESULT_UNKNOW_ERROR,
+          RESULT_NOT_REGISTRED,
+          RESULT_INCORRECT_TARIFF"
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+
+    ChangeTariffReqObject:
+      type: object
+      required:
+        - machine_id
+        - date
+        - tariff_id
+        - requestId
+      properties:
+        machine_id:
+          type: integer
+          description: идентификатор ККМ в ИС ОФД
+        date:
+          type: string
+          description: Дата изменения. Формат “YYYYMMDD HH24:MI:SS”
+        tariff_id:
+          type: integer
+          description: Идентификатор тарифа из справочника тарифов ИС ОФД
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+
+    MachineItemObject:
+      type: object
+      required:
+        - machineId
+        - period_start
+      properties:
+        machineId:
+          type: integer
+          description: идентификатор ККМ в ИС ОФД
+        expenses:
+          type: number
+          format: double
+          description: Сумма начислений по ККМ
+
+    GetReportReqObject:
+      type: object
+      required:
+        - account_number
+        - period_start
+        - period_finish
+        - requestId
+      properties:
+        account_number:
+          type: string
+          description: Новый номер лицевого счета
+        machineId:
+          type: integer
+          description: идентификатор ККМ в ИС ОФД
+        period_start:
+          type: string
+          description: Дата начала периода. Формат “YYYYMMDD ”
+        period_finish:
+          type: string
+          description: Дата окончания периода. Формат “YYYYMMDD ”
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+
+    GetReportRespObject:
+      type: object
+      required:
+        - sum_start
+        - sum_finish
+        - payments
+        - machineItem
+        - requestId
+      properties:
+        sum_start:
+          type: number
+          format: double
+          description: Сальдо на лицевом счете клиента на начало периода
+        sum_finish:
+          type: number
+          format: double
+          description: Сальдо на лицевом счете клиента на конец периода
+        payments:
+          type: number
+          format: double
+          description: Сумма платежей за период
+        machineItem:
+          type: array
+          items:
+            $ref: "#/components/schemas/MachineItemObject"
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+
+    CreateMachineReqObject:
+      type: object
+      required:
+        - account_number
+        - date
+        - machine_id
+        - name
+        - tariff_id
+        - address
+        - requestId
+      properties:
+        account_number:
+          type: string
+          description: Новый номер лицевого счета
+        date:
+          type: string
+          description: Дата создания. Формат “YYYYMMDD HH24:MI:SS”
+        machine_id:
+          type: integer
+          description: идентификатор ККМ в ИС ОФД
+        name:
+          type: string
+          description: Наименование модели ККМ
+        tariff_id:
+          type: integer
+          description: Идентификатор тарифа из справочника тарифов ИС ОФД
+        operator_id:
+          type: integer
+          description: Идентификатор оператора мобильной связи из справочника операторов
+        address:
+          type: string
+          description: Адрес установки ККМ
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+
+    CreateMachineRespObject:
+      type: object
+      required:
+        - resultType
+        - requestId
+      properties:
+        resultType:
+          type: string
+          description: Код ответа
+          example: "RESULT_OK,
+                    RESULT_INCORRECT_INPUT_DATA,
+                    RESULT_UNKNOW_ERROR,
+                    RESULT_NOT_REGISTRED,
+                    RESULT_INCORRECT_TARIFF,
+                    RESULT_INCORRECT_OPERATOR"
+
+    ActivateReqObject:
+      type: object
+      required:
+        - machine_id
+        - period
+        - requestId
+      properties:
+        machine_id:
+          type: integer
+          description: идентификатор ККМ в ИС ОФД
+        period:
+          type: string
+          description: Период списания. Формат “YYYYMM”
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+
+    ActivateRespObject:
+      type: object
+      required:
+        - resultType
+        - requestId
+      properties:
+        resultType:
+          type: string
+          description: Код ответа
+          example: "RESULT_QUEUE_OK,
+                    RESULT_INCORRECT_INPUT_DATA,
+                    RESULT_UNKNOW_ERROR,
+                    RESULT_NOT_REGISTRED"
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+
+    GetMachineReqObject:
+      type: object
+      required:
+        - machine_id
+        - date
+        - requestId
+        - account_number
+      properties:
+        machine_id:
+          type: integer
+          description: идентификатор ККМ в ИС ОФД
+        date:
+          type: string
+          description: Дата изменения. Формат “YYYYMMDD HH24:MI:SS”
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+        account_number:
+          type: string
+          description: Новый номер лицевого счета
+
+    GetMachineRespObject:
+      type: object
+      required:
+        - resultType
+        - requestId
+      properties:
+        resultType:
+          type: string
+          description: Код ответа
+          example: "RESULT_OK,
+                    RESULT_INCORRECT_INPUT_DATA,
+                    RESULT_UNKNOW_ERROR,
+                    RESULT_NOT_REGISTRED,
+                    RESULT_INCORRECT_ACCOUNT"
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+
+    CloseMachineRespObject:
+      type: object
+      required:
+        - resultType
+        - requestId
+      properties:
+        resultType:
+          type: string
+          description: Код ответа
+          example: "RESULT_OK,
+          RESULT_INCORRECT_INPUT_DATA,
+          RESULT_UNKNOW_ERROR,
+          RESULT_NOT_REGISTRED"
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+
+    CloseMachineReqObject:
+      type: object
+      required:
+        - machine_id
+        - date
+        - requestId
+      properties:
+        machine_id:
+          type: integer
+          description: идентификатор ККМ в ИС ОФД
+        date:
+          type: string
+          description: Дата закрытия. Формат “YYYYMMDD ”
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+
+    ChangeAccountMachineRespObject:
+      type: object
+      required:
+        - resultType
+        - requestId
+      properties:
+        resultType:
+          type: string
+          description: Код ответа
+          example: "RESULT_OK,
+          RESULT_INCORRECT_INPUT_DATA,
+          RESULT_UNKNOW_ERROR,
+          RESULT_NOT_REGISTRED,
+          RESULT_INCORRECT_ACCOUNT"
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+
+    ChangeAccountMachineReqObject:
+      type: object
+      required:
+        - machine_id
+        - date
+        - requestId
+        - account_number
+      properties:
+        machine_id:
+          type: integer
+          description: идентификатор ККМ в ИС ОФД
+        date:
+          type: string
+          description: Дата изменения. Формат “YYYYMMDD HH24:MI:SS”
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+        account_number:
+          type: string
+          description: Новый номер лицевого счета
+
+    GetBalanceReqObject:
+      type: object
+      required:
+        - account_number
+        - requestId
+      properties:
+        account_number:
+          type: string
+          description: Номер лицевого счета абонета
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+
+    GetBalanceRespObject:
+      type: object
+      required:
+        - sum
+        - requestId
+      properties:
+        sum:
+          type: number
+          format: double
+          description: Остаток средств на счету
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+
+    GetAbonentReqObject:
+      type: object
+      required:
+        - account_number
+        - requestId
+      properties:
+        account_number:
+          type: string
+          description: Номер лицевого счета абонета
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+
+    GetAbonentRespObject:
+      type: object
+      required:
+        - code
+        - name
+        - org_type
+        - email
+        - phone
+        - address
+        - requestId
+      properties:
+        code:
+          type: string
+          description: БИН/ИИН организации
+        name:
+          type: string
+          description: Наименование организации
+        org_type:
+          type: string
+          description: Тип организации (ИП, ЮЛ)
+        email:
+          type: string
+          description: Адрес электронной почты
+        phone:
+          type: string
+          description: Контактный телефон
+        address:
+          type: string
+          description: Адрес
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+
+    CloseAbonentReqObject:
+      type: object
+      required:
+        - account_number
+        - date
+        - requestId
+      properties:
+        account_number:
+          type: string
+          description: Номер лицевого счета абонета
+        date:
+          type: string
+          description: Дата закрытия лицевого счета. Формат “YYYYMMDD HH24:MI:SS”
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+
+    CloseAbonentRespObject:
+      type: object
+      required:
+        - resultType
+        - requestId
+      properties:
+        resultType:
+          type: string
+          description: Код ответа
+          example: "RESULT_OK,
+          RESULT_INCORRECT_INPUT_DATA,
+          RESULT_UNKNOW_ERROR,
+          RESULT_NOT_REGISTRED,
+          RESULT_FOUND_ACTIVE_MACHINE"
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+
+    EditAbonentReqObject:
+      type: object
+      required:
+        - account_number
+        - name
+        - email
+        - phone
+        - address
+        - requestId
+      properties:
+        account_number:
+          type: string
+          description: Номер лицевого счета абонета
+        name:
+          type: string
+          description: Наименование организации
+        email:
+          type: string
+          description: Адрес электронной почты
+        phone:
+          type: string
+          description: Контактный телефон
+        address:
+          type: string
+          description: Адрес
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+
+    EditAbonentRespObject:
+      type: object
+      required:
+        - resultType
+        - requestId
+      properties:
+        resultType:
+          type: string
+          description: Код ответа
+          example: "RESULT_OK,
+          RESULT_INCORRECT_INPUT_DATA,
+          RESULT_UNKNOW_ERROR,
+          RESULT_NOT_REGISTRED"
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+
+    CreateAbonentReqObject:
+      type: object
+      required:
+        - code
+        - date_contract
+        - name
+        - org_type
+        - email
+        - phone
+        - address
+        - requestId
+      properties:
+        code:
+          type: string
+          description: БИН/ИИН организации
+        date_contract:
+          type: string
+          description: Дата заключения договора. Формат “YYYYMMDD HH24:MI:SS”
+        name:
+          type: string
+          description: Наименование организации
+        org_type:
+          type: string
+          description: Тип организации (ИП, ЮЛ)
+        email:
+          type: string
+          description: Адрес электронной почты
+        phone:
+          type: string
+          description: Контактный телефон
+        address:
+          type: string
+          description: Адрес
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+
+    CreateAbonentRespObject:
+      type: object
+      required:
+        - resultType
+        # - account_number при resultType = RESULT_OK
+        - requestId
+      properties:
+        resultType:
+          type: string
+          description: Код ответа
+          example: "RESULT_OK, RESULT_INCORRECT_INPUT_DATA, RESULT_UNKNOW_ERROR"
+        account_number:
+          type: string
+          description: Номер лицевого счета абонента
+        requestId:
+          type: integer
+          description: Порядковый номер запроса
+
+    ErrorMessage:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Код ошибки
+        message:
+          type: string
+          description: Текст ошибки
+
+  securitySchemes:
+    auth:
+      openIdConnectUrl: https://example.com/.well-known/openid-configuration
+      type: openIdConnect 
